@@ -444,7 +444,7 @@ lvgl:
                   - label:
                       id: demo_ac_temp
                       text_font: montserrat_48
-                      text: "18.0 °C"
+                      text: "20.0 °C"
                       align: CENTER
                   - obj:
                       width: 200
@@ -545,11 +545,8 @@ lvgl:
                               opa: TRANSP
                             selected_text: "Off"
                             options:
-                              - Heat_Cool
                               - Heat
                               - Cool
-                              - Dry
-                              - Only Fan
                               - "Off" # In case conversions
                             dropdown_list:
                               text_font: montserrat_24
@@ -674,36 +671,6 @@ lvgl:
                         text: "-"
                         grid_cell_column_pos: 3 
                         grid_cell_row_pos: 0 
-                        grid_cell_x_align: START
-                        grid_cell_y_align: CENTER
-                    - label:
-                        text_font: extra_icon
-                        text: "\U000F07E4"
-                        grid_cell_column_pos: 0 
-                        grid_cell_row_pos: 1 
-                        grid_cell_x_align: CENTER
-                        grid_cell_y_align: CENTER
-                    - label:
-                        text_font: montserrat_32
-                        id: co2_label
-                        text: "- ppm"
-                        grid_cell_column_pos: 1 
-                        grid_cell_row_pos: 1 
-                        grid_cell_x_align: START
-                        grid_cell_y_align: CENTER
-                    - label:
-                        text_font: extra_icon
-                        text: "\U000F1B5A"
-                        grid_cell_column_pos: 2 
-                        grid_cell_row_pos: 1 
-                        grid_cell_x_align: CENTER
-                        grid_cell_y_align: CENTER
-                    - label:
-                        text_font: montserrat_32
-                        id: iaq_label
-                        text: "-"
-                        grid_cell_column_pos: 3 
-                        grid_cell_row_pos: 1 
                         grid_cell_x_align: START
                         grid_cell_y_align: CENTER
         - label:
