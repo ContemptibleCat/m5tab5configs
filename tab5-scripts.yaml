@@ -8,7 +8,6 @@ script:
       - lambda: |-
           std::vector<lv_obj_t*> btns = {
             id(dash_panel_btn),
-            id(climate_panel_btn),
             id(light_panel_btn)
           };
           for (auto* btn : btns) {
@@ -25,27 +24,22 @@ script:
           lv_obj_t* buttons[] = { 
               id(dash_panel_btn), 
               id(light_panel_btn), 
-              id(climate_panel_btn), 
           };
           lv_obj_t* icons[] = { 
               id(dash_btn_icon), 
               id(light_btn_icon), 
-              id(climate_btn_icon), 
           };
           lv_obj_t* labels[] = { 
               id(dash_btn_label), 
               id(light_btn_label), 
-              id(climate_btn_label), 
           };
           const char* icon_unchecked[] = {
               "\U000F0A1D", // dashboard-outline
               "\U000F0336", // lightbulb-outline
-              "\U000F0F55", // thermometer
           };
           const char* icon_checked[] = {
               "\U000F056E", // dashboard
               "\U000F0335", // lightbulb
-              "\U000F0F54", // thermometer
           };
 
           const int count = sizeof(buttons) / sizeof(buttons[0]);
@@ -67,63 +61,3 @@ script:
   - id: sync_ha
     then:
       - logger.log: "Sync with Home Assistant"
-
-  - id: update_arc_color
-    parameters:
-      ac_mode_index: int
-    then:
-      - lambda: |-
-          switch ( ac_mode_index ) {
-            /* Heat */
-            case 0:
-              lv_obj_set_style_arc_color(id(ac_arc), lv_color_hex(0xEBEBEB), LV_PART_MAIN);
-              lv_obj_set_style_arc_color(id(ac_arc), lv_color_hex(0xEC7636), LV_PART_INDICATOR);
-              lv_obj_set_style_outline_color(id(ac_arc), lv_color_hex(0xEC7636), LV_PART_KNOB);
-              break;
-            /* Cool */
-            case 1:
-              lv_obj_set_style_arc_color(id(ac_arc), lv_color_hex(0x4C96EE), LV_PART_MAIN);
-              lv_obj_set_style_arc_color(id(ac_arc), lv_color_hex(0xEBEBEB), LV_PART_INDICATOR);
-              lv_obj_set_style_outline_color(id(ac_arc), lv_color_hex(0x4C96EE), LV_PART_KNOB);
-              break;
-            /* Off */
-            case 2:
-            /* fallthrough */
-            default:
-              lv_obj_set_style_arc_color(id(ac_arc), lv_color_hex(0xEBEBEB), LV_PART_MAIN);
-              lv_obj_set_style_arc_color(id(ac_arc), lv_color_hex(0xEBEBEB), LV_PART_INDICATOR);
-              lv_obj_set_style_outline_color(id(ac_arc), lv_color_hex(0x9E9E9E), LV_PART_KNOB);
-              break;
-          }
-  # This script was used on dropdown widget
-  # to set ac state (ON/OFF/COOL/HEAT, etc)
-  - id: set_ac_state
-    parameters:
-      ac_mode_idx: int
-    then:
-      - homeassistant.action:
-          action: climate.set_hvac_mode
-          data:
-            entity_id: climate.air_conditioner
-            hvac_mode: !lambda return id(hvac_state_table)[ac_mode_idx];
-  - id: set_ac_fan_mode
-    parameters:
-      ac_fan_mode_idx: int
-    then:
-      - homeassistant.action:
-          action: climate.set_fan_mode
-          data:
-            entity_id: climate.air_conditioner
-            fan_mode: !lambda return id(fan_modes_table)[ac_fan_mode_idx];
-  # This script was used on spinbox/arc widget
-  # to set the temperature to climate entity
-  # it doesn't turn on/off, use the dropdown instead
-  - id: set_ac_temp
-    parameters:
-      temp_value: float
-    then:
-      - homeassistant.action:
-          action: climate.set_temperature
-          data:
-            entity_id: climate.air_conditioner
-            temperature: !lambda return temp_value;

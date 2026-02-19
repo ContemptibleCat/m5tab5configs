@@ -1,6 +1,6 @@
 esphome:
-  name: tab5-ha-hmi
-  friendly_name: M5Stack Tab5 Home Assistant HMI
+  name: tab5-ha-dash
+  friendly_name: Tab5 Dashboard
   min_version: 2025.12.0
 
 esp32:
@@ -16,6 +16,14 @@ packages:
       url: https://github.com/ContemptibleCat/m5tab5configs
       files: [ tab5-globals.yaml, tab5-lvgl.yaml, tab5-scripts.yaml]
       refresh: 1d
+
+external_components:
+  - source: github://pr#12075
+    components: [st7123]
+    refresh: 1h
+  - source: github://pr#12074
+    components: [mipi_dsi]
+    refresh: 1h
 
 esp32_hosted:
   variant: esp32c6
@@ -43,6 +51,8 @@ api:
   on_client_disconnected: 
     then:
       - lvgl.widget.hide: api_icon_label
+  encryption:
+    key: !secret ha_key
 
 ota:
   platform: esphome
@@ -140,10 +150,6 @@ switch:
       number: 2
 
 binary_sensor:
-  - platform: rc522
-    uid: 83-08-60-1A
-    name: "NFC Card Reader"
-
   - platform: gpio
     id: charging
     name: "Charging Status"
@@ -316,16 +322,20 @@ touchscreen:
   - platform: st7123
     i2c_id: bsp_bus
     interrupt_pin: GPIO23
+    display: lcd
     update_interval: never
     reset_pin:
       pi4ioe5v6408: pi4ioe1
-      number: 5
+      number: 5      
+    transform:
+      swap_xy: true
+      mirror_x: true
     calibration:
       x_min: 0
-      x_max: 720
+      x_max: 1280
       y_min: 0
-      y_max: 1280
-    id: tab5_touch
+      y_max: 720
+    id: touch
       
 esp_ldo:
   - voltage: 2.5V
@@ -333,10 +343,11 @@ esp_ldo:
 
 display:
   - platform: mipi_dsi
+    id: lcd
     dimensions:
       height: 1280
       width: 720
-    model: M5Stack-Tab5
+    model: M5STACK-TAB5-V2
     rotation: 270°
     reset_pin:
       pi4ioe5v6408: pi4ioe1
@@ -475,6 +486,7 @@ text_sensor:
                 }
                 snprintf(buf, sizeof(buf), "%s", text.c_str());
                 return buf;
+                
 ## Desk Lamp ##
   - platform: homeassistant
     id: desk_light
@@ -523,93 +535,3 @@ text_sensor:
                 }
                 snprintf(buf, sizeof(buf), "%s", text.c_str());
                 return buf;
-
-## Air Conditioner ##
-  - platform: homeassistant
-    id: ac_state
-    entity_id: climate.air_conditioner
-    on_value:
-      - lvgl.label.update:
-          id: ac_state_label
-          text:
-            format: "%s"
-            args: [ 'str_upper_case(x).c_str()' ]
-
-      - lvgl.label.update:
-          id: demo_ac_state
-          text:
-            format: "%s"
-            args: [ 'str_upper_case(x).c_str()' ]
-
-      - lambda: |-
-          if ( x.empty() || x == "None" || x == "unavailable" || x == "unknown" ) {
-              // disable some UI widgets
-              lv_obj_add_state(id(ac_container), LV_STATE_DISABLED);
-              lv_obj_add_state(id(temp_spin_down), LV_STATE_DISABLED);
-              lv_obj_clear_flag(id(temp_spin_down), LV_OBJ_FLAG_CLICKABLE);
-              lv_obj_add_state(id(temp_spin_up), LV_STATE_DISABLED);
-              lv_obj_clear_flag(id(temp_spin_up), LV_OBJ_FLAG_CLICKABLE);
-          } else {
-              // restore UI widgets
-              lv_obj_clear_state(id(ac_container), LV_STATE_DISABLED);
-              lv_obj_clear_state(id(temp_spin_down), LV_STATE_DISABLED);
-              lv_obj_add_flag(id(temp_spin_down), LV_OBJ_FLAG_CLICKABLE);
-              lv_obj_clear_state(id(temp_spin_up), LV_STATE_DISABLED);
-              lv_obj_add_flag(id(temp_spin_up), LV_OBJ_FLAG_CLICKABLE);
-          }
-      - lvgl.dropdown.update:
-          id: ac_mode_dd
-          selected_index: !lambda |-
-            int index = -1;
-            for (int i = 0; i < 6; i++) {
-              if (x == id(hvac_state_table)[i]) {
-                index = i;
-                break;
-              }
-            }
-            if ( index >= 0 ) return index;
-            else return 5; // Off
-      # Update arc colors
-      - lambda: |-
-          int index = -1;
-            for (int i = 0; i < 6; i++) {
-              if (x == id(hvac_state_table)[i]) {
-                index = i;
-                break;
-              }
-            }
-            if ( index >= 0 ) id(update_arc_color)->execute(index);
-            else id(update_arc_color)->execute(5);
-        
-  - platform: homeassistant
-    id: ac_fan_mode
-    entity_id: climate.air_conditioner
-    attribute: fan_mode
-    on_value:
-      - lvgl.label.update:
-          id: ac_fan_mode_label
-          text:
-            format: "%s"
-            args: [ 'str_upper_case(x).c_str()' ]
-      - lvgl.dropdown.update:
-          id: fan_mode_dd
-          selected_index: !lambda |-
-            int index = -1;
-            for (int i = 0; i < 4; i++) {
-              if (x == id(fan_modes_table)[i]) {
-                index = i;
-                break;
-              }
-            }
-            if ( index >= 0 ) return index;
-            else return 3; // Auto
-  
-  - platform: homeassistant
-    id: ac_temp
-    entity_id: climate.unit_neo_hex_central_ac
-    attribute: temperature
-    on_value:
-      - lvgl.spinbox.update:
-          id: temp_spin_box
-          value: !lambda |-
-            return std::stof(x) * 10;
