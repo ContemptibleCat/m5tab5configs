@@ -250,29 +250,6 @@ lvgl:
       
     - id: card_lg_sub_label
       text_font: montserrat_24
-    
-    # Climate control objects
-    - id: climate_control_bg
-      bg_opa: COVER
-      border_opa: TRANSP
-      bg_color: 0xECECEC
-      width: 460
-      height: 84
-      radius: 24
-      align: BOTTOM_MID
-    
-    - id: climate_control_btn
-      bg_opa: TRANSP
-      width: 140
-      height: 80
-      shadow_opa: TRANSP
-
-    - id: modal_container
-      width: 1280 # full width
-      height: 720 # full height
-      bg_color: 0xA9A9A9
-      bg_opa: 0.7
-      align: CENTER
 
   # Navigation buttons
   top_layer:
