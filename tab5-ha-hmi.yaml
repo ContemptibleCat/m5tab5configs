@@ -539,7 +539,7 @@ text_sensor:
 ## AC Information
   - platform: homeassistant
     id: ac_state
-    entity_id: climate.unit_neo_hex_central_ac
+    entity_id: climate.air_conditioner
     on_value:
       - lvgl.label.update:
           id: ac_state_label
@@ -595,7 +595,7 @@ text_sensor:
         
   - platform: homeassistant
     id: ac_fan_mode
-    entity_id: climate.unit_neo_hex_central_ac
+    entity_id: climate.air_conditioner
     attribute: fan_mode
     on_value:
       - lvgl.label.update:
@@ -618,7 +618,7 @@ text_sensor:
   
   - platform: homeassistant
     id: ac_temp
-    entity_id: climate.unit_neo_hex_central_ac
+    entity_id: climate.air_conditioner
     attribute: temperature
     on_value:
       - lvgl.spinbox.update:
