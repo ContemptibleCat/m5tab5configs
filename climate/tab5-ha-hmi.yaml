@@ -542,18 +542,6 @@ text_sensor:
     id: ac_state
     entity_id: climate.air_conditioner
     on_value:
-      - lvgl.label.update:
-          id: ac_state_label
-          text:
-            format: "%s"
-            args: [ 'str_upper_case(x).c_str()' ]
-
-      - lvgl.label.update:
-          id: demo_ac_state
-          text:
-            format: "%s"
-            args: [ 'str_upper_case(x).c_str()' ]
-
       - lambda: |-
           if ( x.empty() || x == "None" || x == "unavailable" || x == "unknown" ) {
               // disable some UI widgets
@@ -588,11 +576,6 @@ text_sensor:
     entity_id: climate.air_conditioner
     attribute: fan_mode
     on_value:
-      - lvgl.label.update:
-          id: ac_fan_mode_label
-          text:
-            format: "%s"
-            args: [ 'str_upper_case(x).c_str()' ]
       - lvgl.dropdown.update:
           id: fan_mode_dd
           selected_index: !lambda |-
