@@ -5,12 +5,15 @@ font:
     size: 48
     bpp: 4
     glyphs: [
+      "\U000F050F", # mdi:thermometer
       "\U000F058E", # mdi:water-percent
       "\U000F0F30", # mdi:weather-hazy
       "\U000F056E", # mdi:dashboard,
       "\U000F0A1D", # mdi:dashboard-outline
       "\U000F0335", # mdi:lightbulb,
       "\U000F0336", # mdi:lightbulb-outline
+      "\U000F0F54", # mdi:home-thermometer
+      "\U000F0F55", # mdi:home-thermometer-outline
       "\U000F0493", # mdi:cog
       "\U000F08BB", # mdi:cog-outline
       "\U000F0142", # mdi:chevron-right
@@ -380,7 +383,7 @@ lvgl:
 ## Floor Lamp Button ##                
               - obj:
                   id: floor_light_click_area
-                  styles: card_sm
+                  styles: card_md
                   grid_cell_row_pos: 1
                   grid_cell_column_pos: 0
                   grid_cell_x_align: STRETCH
@@ -392,7 +395,7 @@ lvgl:
                           entity_id: switch.standing_lamp_plug_mini
                   widgets:
                     - button:
-                        styles: card_sm_icon_btn
+                        styles: card_md_icon_btn
                         id: floor_light_btn
                         checkable: true
                         state:
@@ -414,16 +417,16 @@ lvgl:
                                 entity_id: switch.standing_lamp_plug_mini
 
                     - label:
-                        styles: card_sm_main_label
+                        styles: card_md_main_label
                         text: "Floor lamp"
                     - label:
-                        styles: card_sm_sub_label
+                        styles: card_md_sub_label
                         id: floor_light_status
                         text: "OFF"
 ## Desk Lamp Button ##
               - obj:
                   id: desk_light_click_area
-                  styles: card_sm
+                  styles: card_md
                   grid_cell_row_pos: 1
                   grid_cell_column_pos: 1
                   grid_cell_x_align: STRETCH
@@ -435,7 +438,7 @@ lvgl:
                           entity_id: switch.desk_lamp
                   widgets:
                     - button:
-                        styles: card_sm_icon_btn
+                        styles: card_md_icon_btn
                         id: desk_light_btn
                         checkable: true
                         state:
@@ -457,10 +460,10 @@ lvgl:
                                 entity_id: switch.desk_lamp
 
                     - label:
-                        styles: card_sm_main_label
+                        styles: card_md_main_label
                         text: "Desk lamp"
                     - label:
-                        styles: card_sm_sub_label
+                        styles: card_md_sub_label
                         id: desk_light_status
                         text: "OFF"
               
