@@ -75,7 +75,7 @@ i2c:
     frequency: 400kHz
   - id: porta_bus
     sda: GPIO53
-    scl: GPIO354
+    scl: GPIO54
     frequency: 400kHz
 
 rc522_i2c:
