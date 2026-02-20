@@ -321,7 +321,7 @@ lvgl:
                   - label:
                       styles: nav_label_inactivate
                       id: screenoff_btn_label
-                      text: "Screen off"
+                      text: "Screen"
             
       - obj:
           align: TOP_RIGHT
