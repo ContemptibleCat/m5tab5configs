@@ -315,7 +315,7 @@ lvgl:
                             text: "\U000F0425" # mdi:power
                       on_press:
                         - homeassistant.action:
-                            action: switch.toggle
+                            action: light.toggle
                             data:
                               entity_id: light.m5stack_tab5_ha_dash_display_backlight
                   - label:
