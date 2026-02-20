@@ -626,12 +626,12 @@ lvgl:
                               width: 128
                               height: 52
                               x: -40
-                              range_from: 18.0
-                              range_to: 32.0
-                              digits: 3
-                              decimal_places: 1
+                              range_from: 18
+                              range_to: 32
+                              digits: 2
+                              decimal_places: 0
                               rollover: false
-                              value: 18.0  # Scale down to 18.0
+                              value: 22
                               text_align: CENTER
                               text_font: montserrat_32
                               text_color: 0x3F4948
@@ -654,7 +654,7 @@ lvgl:
                               align: RIGHT_MID
                               on_click:
                                 - lambda: |-
-                                    lv_spinbox_set_step(id(temp_spin_box), 10);
+                                    lv_spinbox_set_step(id(temp_spin_box), 1);
                                 - lvgl.spinbox.increment: temp_spin_box
                               widgets:
                                 - label:
@@ -674,7 +674,7 @@ lvgl:
                         styles: card_md_icon_btn
                         text_font: extra_icon
                         text_color: 0xF5C23B
-                        text: "U000F1A79"
+                        text: "\U000F1A79"
                     - label:
                         styles: card_md_main_label
                         text: "Mode"   
