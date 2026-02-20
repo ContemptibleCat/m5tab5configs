@@ -1,5 +1,5 @@
 esphome:
-  name: tab5-ha-dash
+  name: tab5-dashboard-w-climate
   friendly_name: Tab5 Dashboard
   min_version: 2025.12.0
 
