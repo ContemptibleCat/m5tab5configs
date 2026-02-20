@@ -16,6 +16,7 @@ font:
       "\U000F0F54", # mdi:home-thermometer
       "\U000F0F55", # mdi:home-thermometer-outline
       "\U000F001B", # mdi:air-conditioner
+      "\U000F1A79", # mdi:sun-snowflake-variant
       "\U000F0493", # mdi:cog
       "\U000F08BB", # mdi:cog-outline
       "\U000F0142", # mdi:chevron-right
@@ -596,7 +597,7 @@ lvgl:
                         styles: card_md_icon_btn
                         text_font: extra_icon_64
                         text_color: 0xF5C23B
-                        text: "\U000F0D80"
+                        text: "\U000F050F"
                     - label:
                         styles: card_md_main_label
                         text: "Temperature"
@@ -665,18 +666,18 @@ lvgl:
               - obj:
                   styles: card_md
                   clickable: false
-                  grid_cell_row_pos: 1
-                  grid_cell_column_pos: 0
+                  grid_cell_row_pos: 4
+                  grid_cell_column_pos: 1
                   grid_cell_x_align: STRETCH
                   widgets:
                     - label:
                         styles: card_md_icon_btn
                         text_font: extra_icon_64
                         text_color: 0xF5C23B
-                        text: "\U000F0D80"
+                        text: "U000F1A79"
                     - label:
                         styles: card_md_main_label
-                        text: "Settings"   
+                        text: "Mode"   
                     - obj:
                         styles: climate_control_bg
                         scrollable: false
@@ -688,9 +689,6 @@ lvgl:
                           pad_column: 14
                         widgets:
                           # AC Mode
-                          - label:
-                              text_font: montserrat_24
-                              text: "Mode"
                           - dropdown:
                               id: ac_mode_dd
                               width: 150
@@ -722,9 +720,32 @@ lvgl:
                                     bg_color: 0xE9F3F8
                               on_change:
                                 - lambda: id(set_ac_state)->execute(x);
-                          - label:
-                              text_font: montserrat_24
-                              text: "Fan Mode"
+              
+              - obj:
+                  styles: card_md
+                  clickable: false
+                  grid_cell_row_pos: 4
+                  grid_cell_column_pos: 2
+                  grid_cell_x_align: STRETCH
+                  widgets:
+                    - label:
+                        styles: card_md_icon_btn
+                        text_font: extra_icon_64
+                        text_color: 0xF5C23B
+                        text: "\U000F001B"
+                    - label:
+                        styles: card_md_main_label
+                        text: "Fan mode"   
+                    - obj:
+                        styles: climate_control_bg
+                        scrollable: false
+                        layout:
+                          type: FLEX
+                          flex_align_main: CENTER
+                          flex_align_cross: CENTER
+                          flex_align_track: CENTER
+                          pad_column: 14
+                        widgets:
                           # AC FAN SPEED
                           - dropdown:
                               id: fan_mode_dd
