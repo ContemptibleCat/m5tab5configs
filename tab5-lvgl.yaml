@@ -172,8 +172,8 @@ lvgl:
       radius: 24
 
     - id: card_md_icon_btn
-      width: 72
-      height: 72
+      width: 96
+      height: 96
       radius: 50
       bg_color: 0xECECEC
       shadow_opa: TRANSP
@@ -182,12 +182,12 @@ lvgl:
     - id: card_md_main_label
       text_font: montserrat_32
       align: TOP_LEFT
-      x: 92
+      x: 116
       y: 5
       
     - id: card_md_sub_label
       text_font: montserrat_24
-      x: 92
+      x: 116
       y: 60
 
     # Large card container for modal
@@ -362,13 +362,13 @@ lvgl:
             widgets:
               - label:
                   id: time_label
-                  text_font: montserrat_96
+                  text_font: montserrat_160
                   text: "00:00:00"
                   align: CENTER
                   y: -100
               - label:
                   id: date_label
-                  text_font: montserrat_32
+                  text_font: montserrat_64
                   text: "1970-01-01 Thu"
                   align: CENTER
                   y: 30
@@ -416,11 +416,6 @@ lvgl:
                         grid_cell_row_pos: 0 
                         grid_cell_x_align: START
                         grid_cell_y_align: CENTER
-        - label:
-            x: 220
-            y: 40
-            text_font: montserrat_48
-            text: "Dashboard"    
 
 ## Light Page ##  
     - id: light_page
@@ -435,18 +430,11 @@ lvgl:
               pad_column: 24
 
             widgets:
-              - label:
-                  styles: nav_label_inactivate
-                  text_font: montserrat_32
-                  text: "Room"
-                  grid_cell_row_pos: 0
-                  grid_cell_column_pos: 0
-
               ## Floor Lamp Button ##                
               - obj:
                   id: floor_light_click_area
                   styles: card_md
-                  grid_cell_row_pos: 1
+                  grid_cell_row_pos: 0
                   grid_cell_column_pos: 0
                   grid_cell_x_align: STRETCH
                   clickable: true
@@ -490,7 +478,7 @@ lvgl:
               - obj:
                   id: desk_light_click_area
                   styles: card_md
-                  grid_cell_row_pos: 1
+                  grid_cell_row_pos: 0
                   grid_cell_column_pos: 1
                   grid_cell_x_align: STRETCH
                   clickable: true
@@ -529,9 +517,3 @@ lvgl:
                         styles: card_md_sub_label
                         id: desk_light_status
                         text: "OFF"
-              
-        - label:
-            x: 220
-            y: 40
-            text_font: montserrat_48
-            text: "Lights"
