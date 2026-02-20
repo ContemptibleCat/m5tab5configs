@@ -73,12 +73,8 @@ i2c:
     sda: GPIO31
     scl: GPIO32
     frequency: 400kHz
-  - id: porta_bus
-    sda: GPIO53
-    scl: GPIO54
 
 rc522_i2c:
-  i2c_id: porta_bus
   address: 0x28
   on_tag:
     then:
@@ -86,7 +82,6 @@ rc522_i2c:
 
 pi4ioe5v6408:
   - id: pi4ioe1
-    i2c_id: bsp_bus
     address: 0x43
     # 0: O - wifi_antenna_int_ext
     # 1: O - speaker_enable
@@ -97,7 +92,6 @@ pi4ioe5v6408:
     # 6: O - camera reset
     # 7: I - headphone detect
   - id: pi4ioe2
-    i2c_id: bsp_bus
     address: 0x44
     # 0: O - wifi_power
     # 1: NC
@@ -202,7 +196,6 @@ select:
 
 sensor:
   - platform: ina226
-    i2c_id: bsp_bus
     address: 0x41
     adc_averaging: 16
     max_current: 8.192A
@@ -383,7 +376,6 @@ i2s_audio:
 audio_adc:
   - platform: es7210
     id: es7210_adc
-    i2c_id: bsp_bus
     bits_per_sample: 16bit
     sample_rate: 16000
 
@@ -398,7 +390,6 @@ microphone:
 audio_dac:
   - platform: es8388
     id: es8388_dac
-    i2c_id: bsp_bus
 
 speaker:
   - platform: i2s_audio
@@ -429,7 +420,6 @@ time:
         rx8130.write_time:
   - platform: rx8130
     id: rx8130_time
-    i2c_id: bsp_bus
     update_interval: never
     on_time:
       # Update once ready
