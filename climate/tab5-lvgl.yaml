@@ -583,14 +583,11 @@ lvgl:
               grid_columns: [fr(1), fr(1)]
               pad_row: 24
               pad_column: 24
+
             widgets:
               - obj:
                   styles: card_md
-                  clickable: true
-                  on_press:
-                    - lvgl.widget.show: ac_container
-                    # - lambda: |-
-
+                  clickable: false
                   grid_cell_row_pos: 0
                   grid_cell_column_pos: 0
                   grid_cell_x_align: STRETCH
@@ -602,27 +599,7 @@ lvgl:
                         text: "\U000F0D80"
                     - label:
                         styles: card_md_main_label
-                        text: "Room"
-                    - obj:
-                        bg_opa: TRANSP
-                        border_opa: TRANSP
-                        x: 92
-                        y: 60
-                        pad_all: 0
-                        width: 300
-                        layout:
-                          type: FLEX
-                          flex_align_cross: CENTER
-                          pad_column: 8
-                        widgets:
-                          - label:
-                              id: ac_state_label
-                              text_font: montserrat_24
-                              text: "Off"
-                          - label:
-                              id: ac_fan_mode_label
-                              text_font: montserrat_24
-                              text: "Auto"   
+                        text: "Temperature"
                     - obj:
                         styles: climate_control_bg
                         scrollable: false
@@ -689,9 +666,23 @@ lvgl:
                                     text_color: 0x5E5E5E
                                     text_font: montserrat_48
                                     text: "+"
+            
+              - obj:
+                  styles: card_md
+                  clickable: false
+                  grid_cell_row_pos: 0
+                  grid_cell_column_pos: 0
+                  grid_cell_x_align: STRETCH
+                  widgets:
+                    - label:
+                        styles: card_md_icon_btn
+                        text_font: extra_icon_64
+                        text_color: 0xF5C23B
+                        text: "\U000F0D80"
+                    - label:
+                        styles: card_md_main_label
+                        text: "Settings"   
                     - obj:
-                      width: 700
-                      height: 100
                       bg_opa: TRANSP
                       border_opa: TRANSP
                       align: BOTTOM_MID
