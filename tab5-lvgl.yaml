@@ -5,16 +5,12 @@ font:
     size: 48
     bpp: 4
     glyphs: [
-      "\U000F050F", # mdi:thermometer
       "\U000F058E", # mdi:water-percent
       "\U000F0F30", # mdi:weather-hazy
       "\U000F056E", # mdi:dashboard,
       "\U000F0A1D", # mdi:dashboard-outline
       "\U000F0335", # mdi:lightbulb,
       "\U000F0336", # mdi:lightbulb-outline
-      "\U000F0F54", # mdi:home-thermometer
-      "\U000F0F55", # mdi:home-thermometer-outline
-      "\U000F001B", # mdi:air-conditioner
       "\U000F0493", # mdi:cog
       "\U000F08BB", # mdi:cog-outline
       "\U000F0142", # mdi:chevron-right
@@ -22,9 +18,11 @@ font:
       "\U000F1804", # mdi:lightbulb-fluorescent-tube
       "\U000F18DE", # mdi:ceiling-light-multiple-outline
       "\U000F18DD", # mdi:ceiling-light-multiple
+      "\U000F17C8", # mdi:floor-lamp-outline
+      "\U000F08DD", # mdi:floor-lamp-filled
+      "\U000F1B20", # mdi:desk-lamp-on
+      "\U000F095F", # mdi:desk-lamp-off
       "\U000F0425", # mdi:power
-      "\U000F07E4", # mdi:CO2
-      "\U000F1B5A", # mdi:weather-dust (used to indicate the level of PM2.5)
       "\U000F05A9", # mdi:wifi
       "\U000F007A", # mdi:battery-10
       "\U000F007B", # mdi:battery-20
@@ -406,7 +404,7 @@ lvgl:
                               id: floor_light_label
                               text_font: extra_icon
                               text_color: 0X9E9E9E
-                              text: "\U000F18DE"
+                              text: "\U000F17C8"
                               align: CENTER
                         on_short_click:
                           - logger.log: "Toggle the light!"
@@ -449,7 +447,7 @@ lvgl:
                               id: desk_light_label
                               text_font: extra_icon
                               text_color: 0X9E9E9E
-                              text: "\U000F18DE"
+                              text: "\U000F095F"
                               align: CENTER
                         on_short_click:
                           - logger.log: "Toggle the light!"

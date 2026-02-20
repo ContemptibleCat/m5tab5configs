@@ -73,8 +73,13 @@ i2c:
     sda: GPIO31
     scl: GPIO32
     frequency: 400kHz
+  - id: porta_bus
+    sda: GPIO53
+    scl: GPIO354
+    frequency: 400kHz
 
 rc522_i2c:
+  i2c_id: porta_bus
   address: 0x28
   on_tag:
     then:
@@ -82,6 +87,7 @@ rc522_i2c:
 
 pi4ioe5v6408:
   - id: pi4ioe1
+    i2c_id: bsp_bus
     address: 0x43
     # 0: O - wifi_antenna_int_ext
     # 1: O - speaker_enable
@@ -92,6 +98,7 @@ pi4ioe5v6408:
     # 6: O - camera reset
     # 7: I - headphone detect
   - id: pi4ioe2
+    i2c_id: bsp_bus
     address: 0x44
     # 0: O - wifi_power
     # 1: NC
@@ -196,6 +203,7 @@ select:
 
 sensor:
   - platform: ina226
+    i2c_id: bsp_bus
     address: 0x41
     adc_averaging: 16
     max_current: 8.192A
@@ -456,7 +464,7 @@ text_sensor:
             id: floor_light_label
             text_color: !lambda |-
               if ( x == "on" ) {
-                  return lv_color_hex(0xF5C23B);
+                  return lv_color_hex(0xFFF8DC);
               } else {
                   return lv_color_hex(0x9E9E9E);
               }
@@ -464,9 +472,9 @@ text_sensor:
                 static char buf[10];
                 std::string icon;
                 if ( x == "on" ) {
-                    icon = "\U000F18DD";
+                    icon = "\U000F08DD";
                 } else {
-                    icon = "\U000F18DE";
+                    icon = "\U000F17C8";
                 }
                 snprintf(buf, sizeof(buf), "%s", icon.c_str());
                 return buf;
@@ -505,7 +513,7 @@ text_sensor:
             id: desk_light_label
             text_color: !lambda |-
               if ( x == "on" ) {
-                  return lv_color_hex(0xF5C23B);
+                  return lv_color_hex(0x008000);
               } else {
                   return lv_color_hex(0x9E9E9E);
               }
@@ -513,9 +521,9 @@ text_sensor:
                 static char buf[10];
                 std::string icon;
                 if ( x == "on" ) {
-                    icon = "\U000F18DD";
+                    icon = "\U000F1B20";
                 } else {
-                    icon = "\U000F18DE";
+                    icon = "\U000F095F";
                 }
                 snprintf(buf, sizeof(buf), "%s", icon.c_str());
                 return buf;
