@@ -70,6 +70,11 @@ font:
     ]
   
   - file: gfonts://Montserrat@600
+    id: montserrat_64
+    size: 64
+    bpp: 4
+
+  - file: gfonts://Montserrat@600
     id: montserrat_96
     size: 96
     bpp: 4
