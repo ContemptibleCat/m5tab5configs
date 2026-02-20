@@ -74,6 +74,11 @@ font:
     size: 96
     bpp: 4
 
+  - file: gfonts://Montserrat@600
+    id: montserrat_160
+    size: 160
+    bpp: 4
+
 
 lvgl:
   on_boot:
