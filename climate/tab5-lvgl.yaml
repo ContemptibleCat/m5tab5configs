@@ -573,7 +573,7 @@ lvgl:
                         styles: card_md_sub_label
                         id: desk_light_status
                         text: "OFF"
-
+## Climate Page ## 
     - id: climate_page
       widgets:
         - obj:
@@ -595,7 +595,7 @@ lvgl:
                   widgets:
                     - label:
                         styles: card_md_icon_btn
-                        text_font: extra_icon_64
+                        text_font: extra_icon
                         text_color: 0xF5C23B
                         text: "\U000F050F"
                     - label:
@@ -672,7 +672,7 @@ lvgl:
                   widgets:
                     - label:
                         styles: card_md_icon_btn
-                        text_font: extra_icon_64
+                        text_font: extra_icon
                         text_color: 0xF5C23B
                         text: "U000F1A79"
                     - label:
@@ -730,7 +730,7 @@ lvgl:
                   widgets:
                     - label:
                         styles: card_md_icon_btn
-                        text_font: extra_icon_64
+                        text_font: extra_icon
                         text_color: 0xF5C23B
                         text: "\U000F001B"
                     - label:
