@@ -384,6 +384,7 @@ i2s_audio:
 audio_adc:
   - platform: es7210
     id: es7210_adc
+    i2c_id: bsp_bus
     bits_per_sample: 16bit
     sample_rate: 16000
 
@@ -398,6 +399,7 @@ microphone:
 audio_dac:
   - platform: es8388
     id: es8388_dac
+    i2c_id: bsp_bus
 
 speaker:
   - platform: i2s_audio
@@ -428,6 +430,7 @@ time:
         rx8130.write_time:
   - platform: rx8130
     id: rx8130_time
+    i2c_id: bsp_bus
     update_interval: never
     on_time:
       # Update once ready
