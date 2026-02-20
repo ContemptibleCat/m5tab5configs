@@ -14,7 +14,7 @@ esp32:
 packages:
   remote_package_files:
       url: https://github.com/ContemptibleCat/m5tab5configs
-      files: [ tab5-globals.yaml, tab5-lvgl.yaml, tab5-scripts.yaml]
+      files: [ climate/tab5-globals.yaml, climate/tab5-lvgl.yaml, climate/tab5-scripts.yaml]
 
 external_components:
   - source: github://pr#12075
