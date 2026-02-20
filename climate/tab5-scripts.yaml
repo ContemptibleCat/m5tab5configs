@@ -83,7 +83,7 @@ script:
           data:
             entity_id: climate.air_conditioner
             fan_mode: !lambda return id(fan_modes_table)[ac_fan_mode_idx];
-  # This script was used on spinbox/arc widget
+  # This script was used on spinbox widget
   # to set the temperature to climate entity
   # it doesn't turn on/off, use the dropdown instead
   - id: set_ac_temp
