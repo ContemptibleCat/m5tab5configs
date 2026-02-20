@@ -15,7 +15,6 @@ packages:
   remote_package_files:
       url: https://github.com/ContemptibleCat/m5tab5configs
       files: [ tab5-globals.yaml, tab5-lvgl.yaml, tab5-scripts.yaml]
-      refresh: 1d
 
 external_components:
   - source: github://pr#12075
