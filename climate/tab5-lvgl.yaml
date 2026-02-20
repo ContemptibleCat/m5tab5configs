@@ -654,7 +654,7 @@ lvgl:
                               align: RIGHT_MID
                               on_click:
                                 - lambda: |-
-                                    lv_spinbox_set_step(id(temp_spin_box), 5);
+                                    lv_spinbox_set_step(id(temp_spin_box), 10);
                                 - lvgl.spinbox.increment: temp_spin_box
                               widgets:
                                 - label:
@@ -666,7 +666,7 @@ lvgl:
               - obj:
                   styles: card_md
                   clickable: false
-                  grid_cell_row_pos: 3
+                  grid_cell_row_pos: 2
                   grid_cell_column_pos: 0
                   grid_cell_x_align: STRETCH
                   widgets:
@@ -724,7 +724,7 @@ lvgl:
               - obj:
                   styles: card_md
                   clickable: false
-                  grid_cell_row_pos: 3
+                  grid_cell_row_pos: 2
                   grid_cell_column_pos: 1
                   grid_cell_x_align: STRETCH
                   widgets:
