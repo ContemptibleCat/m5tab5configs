@@ -190,36 +190,6 @@ lvgl:
       x: 92
       y: 60
 
-    - id: card_lg
-      width: 800
-      height: 600
-      radius: 24
-      align: CENTER
-      opa: 1
-
-    - id: card_lg_icon_btn
-      width: 72
-      height: 72
-      radius: 50
-      bg_color: 0xECECEC
-      shadow_opa: TRANSP
-      align: TOP_LEFT
-    
-    - id: card_lg_icon_btn_transp
-      width: 72
-      height: 72
-      radius: 50
-      bg_opa: TRANSP
-      shadow_opa: TRANSP
-      align: TOP_LEFT
-
-    - id: card_lg_main_label
-      text_font: montserrat_32
-      align: TOP_LEFT
-      
-    - id: card_lg_sub_label
-      text_font: montserrat_24
-    
     # Large card container for modal
     - id: card_lg
       width: 800
