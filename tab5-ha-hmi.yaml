@@ -20,9 +20,6 @@ external_components:
   - source: github://pr#12075
     components: [st7123]
     refresh: 1h
-  - source: github://pr#12074
-    components: [mipi_dsi]
-    refresh: 1h
 
 esp32_hosted:
   variant: esp32c6
