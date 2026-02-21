@@ -73,14 +73,6 @@ i2c:
     scl: GPIO32
     frequency: 400kHz
 
-#rc522_i2c:
-#  address: 0x28
-pn532_i2c:
-  update_interval: 1s
-  on_tag:
-    then:
-      - homeassistant.tag_scanned: !lambda 'return x;'
-
 pi4ioe5v6408:
   - id: pi4ioe1
     address: 0x43
