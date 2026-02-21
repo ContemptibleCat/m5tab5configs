@@ -613,7 +613,6 @@ lvgl:
                                 - lambda: |-
                                     lv_spinbox_set_step(id(temp_spin_box), 1);
                                 - lvgl.spinbox.decrement: temp_spin_box
-                                - lambda: id(set_ac_temp)->execute(temp_spin_box);
                               widgets:
                                 - label:
                                     align: LEFT_MID
@@ -632,7 +631,7 @@ lvgl:
                               digits: 2
                               decimal_places: 0
                               rollover: false
-                              value: 22
+                              value: 20
                               text_align: CENTER
                               text_font: montserrat_32
                               text_color: 0x3F4948
@@ -641,6 +640,8 @@ lvgl:
                               cursor:
                                 bg_opa: transp
                                 text_color: 0x3F4948
+                              on_value:
+                                - lambda: id(set_ac_temp)->execute(x);
                           - label:
                               align: CENTER
                               text_color: 0x3F4948
@@ -655,7 +656,6 @@ lvgl:
                                 - lambda: |-
                                     lv_spinbox_set_step(id(temp_spin_box), 1);
                                 - lvgl.spinbox.increment: temp_spin_box
-                                - lambda: id(set_ac_temp)->execute(temp_spin_box);
                               widgets:
                                 - label:
                                     align: RIGHT_MID
