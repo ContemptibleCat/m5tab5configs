@@ -9,6 +9,7 @@ script:
           std::vector<lv_obj_t*> btns = {
             id(dash_panel_btn),
             id(light_panel_btn),
+            id(climate_panel_btn),
             id(screenoff_panel_btn)
           };
           for (auto* btn : btns) {
@@ -24,23 +25,28 @@ script:
           const int active = id(page_num);
           lv_obj_t* buttons[] = { 
               id(dash_panel_btn), 
-              id(light_panel_btn), 
+              id(light_panel_btn),
+              id(climate_panel_btn)
           };
           lv_obj_t* icons[] = { 
               id(dash_btn_icon), 
-              id(light_btn_icon), 
+              id(light_btn_icon),
+              id(climate_panel_btn) 
           };
           lv_obj_t* labels[] = { 
               id(dash_btn_label), 
-              id(light_btn_label), 
+              id(light_btn_label),
+              id(climate_panel_btn) 
           };
           const char* icon_unchecked[] = {
               "\U000F0A1D", // dashboard-outline
               "\U000F0336", // lightbulb-outline
+              "\U000F0F55" // home-thermometer-outline
           };
           const char* icon_checked[] = {
               "\U000F056E", // dashboard
               "\U000F0335", // lightbulb
+              "\U000F0F54" // home-thermometer
           };
 
           const int count = sizeof(buttons) / sizeof(buttons[0]);
@@ -62,3 +68,34 @@ script:
   - id: sync_ha
     then:
       - logger.log: "Sync with Home Assistant"
+  
+  # This script was used on dropdown widget
+  # to set ac state (ON/OFF/COOL/HEAT, etc)
+  - id: set_ac_state
+    parameters:
+      ac_mode_idx: int
+    then:
+      - homeassistant.action:
+          action: climate.set_hvac_mode
+          data:
+            entity_id: climate.air_conditioner
+            hvac_mode: !lambda return id(hvac_state_table)[ac_mode_idx];
+  - id: set_ac_fan_mode
+    parameters:
+      ac_fan_mode_idx: int
+    then:
+      - homeassistant.action:
+          action: climate.set_fan_mode
+          data:
+            entity_id: climate.air_conditioner
+            fan_mode: !lambda return id(fan_modes_table)[ac_fan_mode_idx];
+
+  - id: set_ac_temp
+    parameters:
+      temp_value: float
+    then:
+      - homeassistant.action:
+          action: climate.set_temperature
+          data:
+            entity_id: climate.air_conditioner
+            temperature: !lambda return temp_value;
